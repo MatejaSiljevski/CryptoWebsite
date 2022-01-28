@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import {Layout, Typography, Space} from 'antd'
+import {Navbar, Homepage, Cryptocurrencies, CryptoDetails} from './components'
+import './App.css'
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <div className='app'>
+                <div className="navbar">
+                    <Navbar />
+                </div>
+                <div className="main">
+                    <Layout>
+                        <div className="routes">
+                            <Routes>
+                                <Route path="/" element={<Homepage />}/>
+                                <Route path="/cryptocurrencies" element={<Cryptocurrencies />}/>
+                                <Route path="/crypto/:coinId" element={<CryptoDetails />}/>
+                               
+                            </Routes>
+                        </div>
+                    </Layout>
+                    <div className="footer" >
+                        <Typography.Title level={5} style={{color: 'white', textAlign: 'center'}}>
+                            CryptoVerse <br />
+                            All Rights Reserved.
+                        </Typography.Title>
+                        <Space>
+                            <Link to="/">Home</Link>
+                        </Space>
+                    </div>
+                </div>
+            </div>
+        </BrowserRouter>
+    )
 }
 
-export default App;
+export default App
